@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct SwiftUIRestrictingInputApp: App {
+    private var viewModel = ViewModel()
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(viewModel: viewModel)
+                
         }
     }
 }

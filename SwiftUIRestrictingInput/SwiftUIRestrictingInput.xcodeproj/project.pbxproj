@@ -14,6 +14,7 @@
 		0B6C7754282902AE003286BA /* SwiftUIRestrictingInputTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6C7753282902AE003286BA /* SwiftUIRestrictingInputTests.swift */; };
 		0B6C775E282902AE003286BA /* SwiftUIRestrictingInputUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6C775D282902AE003286BA /* SwiftUIRestrictingInputUITests.swift */; };
 		0B6C7760282902AE003286BA /* SwiftUIRestrictingInputUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6C775F282902AE003286BA /* SwiftUIRestrictingInputUITestsLaunchTests.swift */; };
+		0B6C776F28291DA5003286BA /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6C776E28291DA5003286BA /* ViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,7 @@
 		0B6C7759282902AE003286BA /* SwiftUIRestrictingInputUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftUIRestrictingInputUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0B6C775D282902AE003286BA /* SwiftUIRestrictingInputUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIRestrictingInputUITests.swift; sourceTree = "<group>"; };
 		0B6C775F282902AE003286BA /* SwiftUIRestrictingInputUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIRestrictingInputUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		0B6C776E28291DA5003286BA /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +98,7 @@
 			children = (
 				0B6C7742282902AC003286BA /* SwiftUIRestrictingInputApp.swift */,
 				0B6C7744282902AC003286BA /* ContentView.swift */,
+				0B6C776E28291DA5003286BA /* ViewModel.swift */,
 				0B6C7746282902AE003286BA /* Assets.xcassets */,
 				0B6C7748282902AE003286BA /* Preview Content */,
 			);
@@ -258,6 +261,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0B6C7745282902AC003286BA /* ContentView.swift in Sources */,
+				0B6C776F28291DA5003286BA /* ViewModel.swift in Sources */,
 				0B6C7743282902AC003286BA /* SwiftUIRestrictingInputApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

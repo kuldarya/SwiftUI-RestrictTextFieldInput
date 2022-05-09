@@ -8,24 +8,52 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var restrictWhitespaces = ""
-    @State private var restrictLetters = ""
-    @State private var restrictDecimals = ""
+    @State var viewModel: ViewModel = .init()
 
     var body: some View {
+        let bindingForWhitespaceTextField = Binding<String>(
+            get: { viewModel.whitespaceTextFieldText },
+            set: { newValue in
+                viewModel.whitespaceTextFieldText = newValue
+
+                while let rangeOfWhitespaces = viewModel.whitespaceTextFieldText.rangeOfCharacter(from: .whitespaces) {
+                    viewModel.whitespaceTextFieldText = viewModel.whitespaceTextFieldText.replacingCharacters(in: rangeOfWhitespaces, with: "")
+                }
+            })
+
+        let bindingForLettersTextField = Binding<String>(
+            get: { viewModel.lettersTextFieldText },
+            set: { newValue in
+                viewModel.lettersTextFieldText = newValue
+
+                while let rangeOfLetters = viewModel.lettersTextFieldText.rangeOfCharacter(from: .letters) {
+                    viewModel.lettersTextFieldText = viewModel.lettersTextFieldText.replacingCharacters(in: rangeOfLetters, with: "")
+                }
+            }
+        )
+
+        let bindingForDecimalsTextField = Binding<String>(
+            get: { viewModel.decimalsTextFieldText },
+            set: { newValue in
+                viewModel.decimalsTextFieldText = newValue
+
+                while let rangeOfDecimals = viewModel.decimalsTextFieldText.rangeOfCharacter(from: .decimalDigits) {
+                    viewModel.decimalsTextFieldText = viewModel.decimalsTextFieldText.replacingCharacters(in: rangeOfDecimals, with: "")
+                }
+            })
+
         VStack(spacing: 48) {
-            Text("SWIFTUI")
             VStack(alignment: .leading, spacing: 8) {
                 Text("Doesn't accept whitespaces")
-                TextField("", text: $restrictWhitespaces)
+                TextField("", text: bindingForWhitespaceTextField)
             }
             VStack(alignment: .leading, spacing: 8) {
                 Text("Doesn't accept letters")
-                TextField("", text: $restrictLetters)
+                TextField("", text: bindingForLettersTextField)
             }
             VStack(alignment: .leading, spacing: 8) {
                 Text("Doesn't accept decimals")
-                TextField("", text: $restrictDecimals)
+                TextField("", text: bindingForDecimalsTextField)
             }
             Spacer()
         }
@@ -36,7 +64,8 @@ struct ContentView: View {
 }
 
 struct ContentView_Previews: PreviewProvider {
+    @State static var viewModel = ViewModel()
     static var previews: some View {
-        ContentView()
+        ContentView(viewModel: viewModel)
     }
 }
