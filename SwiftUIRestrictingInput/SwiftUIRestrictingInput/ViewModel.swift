@@ -22,14 +22,14 @@ final class ViewModel: ObservableObject {
     func setRestrictionForLetters(input: String) {
         lettersTextFieldText = input
         while let rangeOfLetters = lettersTextFieldText.rangeOfCharacter(from: .letters) {
-            lettersTextFieldText = lettersTextFieldText.replacingCharacters(in: rangeOfLetters, with: "")
+            lettersTextFieldText = lettersTextFieldText.replacingCharacters(in: rangeOfLetters, with: "").trimmingCharacters(in: .whitespaces)
         }
     }
 
     func setRestrictionForDecimals(input: String) {
         decimalsTextFieldText = input
         while let rangeOfDecimals = decimalsTextFieldText.rangeOfCharacter(from: .decimalDigits) {
-            decimalsTextFieldText = decimalsTextFieldText.replacingCharacters(in: rangeOfDecimals, with: "")
+            decimalsTextFieldText = decimalsTextFieldText.replacingCharacters(in: rangeOfDecimals, with: "").trimmingCharacters(in: .whitespaces)
         }
     }
 }
