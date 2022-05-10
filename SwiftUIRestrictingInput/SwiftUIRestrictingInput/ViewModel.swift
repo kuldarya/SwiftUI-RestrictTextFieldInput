@@ -19,10 +19,17 @@ final class ViewModel: ObservableObject {
         }
     }
 
-    func restRestrictionForLetters(input: String) {
+    func setRestrictionForLetters(input: String) {
         lettersTextFieldText = input
         while let rangeOfLetters = lettersTextFieldText.rangeOfCharacter(from: .letters) {
             lettersTextFieldText = lettersTextFieldText.replacingCharacters(in: rangeOfLetters, with: "")
+        }
+    }
+
+    func setRestrictionForDecimals(input: String) {
+        decimalsTextFieldText = input
+        while let rangeOfDecimals = decimalsTextFieldText.rangeOfCharacter(from: .decimalDigits) {
+            decimalsTextFieldText = decimalsTextFieldText.replacingCharacters(in: rangeOfDecimals, with: "")
         }
     }
 }

@@ -38,7 +38,7 @@ struct ContentView: View {
         let bindingForLettersTextField = Binding<String>(
             get: { viewModel.lettersTextFieldText },
             set: { newValue in
-                viewModel.restRestrictionForLetters(input: newValue)
+                viewModel.setRestrictionForLetters(input: newValue)
             })
         return VStack(alignment: .leading, spacing: 8) {
             Text(Constants.noLetters)
@@ -50,11 +50,7 @@ struct ContentView: View {
         let bindingForDecimalsTextField = Binding<String>(
             get: { viewModel.decimalsTextFieldText },
             set: { newValue in
-                viewModel.decimalsTextFieldText = newValue
-
-                while let rangeOfDecimals = viewModel.decimalsTextFieldText.rangeOfCharacter(from: .decimalDigits) {
-                    viewModel.decimalsTextFieldText = viewModel.decimalsTextFieldText.replacingCharacters(in: rangeOfDecimals, with: "")
-                }
+                viewModel.setRestrictionForDecimals(input: newValue)
             })
         return VStack(alignment: .leading, spacing: 8) {
             Text(Constants.noDecimalNumbers)
