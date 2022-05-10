@@ -11,27 +11,42 @@ struct ContentView: View {
     @State var viewModel: ViewModel = .init()
 
     var body: some View {
+        VStack(spacing: 48) {
+            buildWhitespaceTextField()
+            buildLettersTextField()
+            buildDecimalsTextField()
+            Spacer()
+        }
+        .textFieldStyle(RoundedBorderTextFieldStyle())
+        .padding(.horizontal, 24)
+        .padding(.top, 24)
+    }
+
+    private func buildWhitespaceTextField() -> some View {
         let bindingForWhitespaceTextField = Binding<String>(
             get: { viewModel.whitespaceTextFieldText },
             set: { newValue in
-                viewModel.whitespaceTextFieldText = newValue
-
-                while let rangeOfWhitespaces = viewModel.whitespaceTextFieldText.rangeOfCharacter(from: .whitespaces) {
-                    viewModel.whitespaceTextFieldText = viewModel.whitespaceTextFieldText.replacingCharacters(in: rangeOfWhitespaces, with: "")
-                }
+                viewModel.setRestrictionForWhitespaces(input: newValue)
             })
+        return VStack(alignment: .leading, spacing: 8) {
+            Text(Constants.noWhitespaces)
+            TextField("", text: bindingForWhitespaceTextField)
+        }
+    }
 
+    private func buildLettersTextField() -> some View {
         let bindingForLettersTextField = Binding<String>(
             get: { viewModel.lettersTextFieldText },
             set: { newValue in
-                viewModel.lettersTextFieldText = newValue
+                viewModel.restRestrictionForLetters(input: newValue)
+            })
+        return VStack(alignment: .leading, spacing: 8) {
+            Text(Constants.noLetters)
+            TextField("", text: bindingForLettersTextField)
+        }
+    }
 
-                while let rangeOfLetters = viewModel.lettersTextFieldText.rangeOfCharacter(from: .letters) {
-                    viewModel.lettersTextFieldText = viewModel.lettersTextFieldText.replacingCharacters(in: rangeOfLetters, with: "")
-                }
-            }
-        )
-
+    private func buildDecimalsTextField() -> some View {
         let bindingForDecimalsTextField = Binding<String>(
             get: { viewModel.decimalsTextFieldText },
             set: { newValue in
@@ -41,27 +56,13 @@ struct ContentView: View {
                     viewModel.decimalsTextFieldText = viewModel.decimalsTextFieldText.replacingCharacters(in: rangeOfDecimals, with: "")
                 }
             })
-
-        VStack(spacing: 48) {
-            VStack(alignment: .leading, spacing: 8) {
-                Text("Doesn't accept whitespaces")
-                TextField("", text: bindingForWhitespaceTextField)
-            }
-            VStack(alignment: .leading, spacing: 8) {
-                Text("Doesn't accept letters")
-                TextField("", text: bindingForLettersTextField)
-            }
-            VStack(alignment: .leading, spacing: 8) {
-                Text("Doesn't accept decimals")
-                TextField("", text: bindingForDecimalsTextField)
-            }
-            Spacer()
+        return VStack(alignment: .leading, spacing: 8) {
+            Text(Constants.noDecimalNumbers)
+            TextField("", text: bindingForDecimalsTextField)
         }
-        .textFieldStyle(RoundedBorderTextFieldStyle())
-        .padding(.horizontal, 24)
-        .padding(.top, 24)
     }
 }
+
 
 struct ContentView_Previews: PreviewProvider {
     @State static var viewModel = ViewModel()
