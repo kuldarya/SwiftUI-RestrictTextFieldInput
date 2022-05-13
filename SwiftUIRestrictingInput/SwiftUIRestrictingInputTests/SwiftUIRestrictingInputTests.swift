@@ -9,11 +9,11 @@ import XCTest
 @testable import SwiftUIRestrictingInput
 
 class SwiftUIRestrictingInputTests: XCTestCase {
-    var sut: ContentView!
+    var sut: ViewModel!
 
     override func setUpWithError() throws {
         super.setUp()
-        sut = ContentView()
+        sut = ViewModel()
     }
 
     override func tearDownWithError() throws {
@@ -23,24 +23,24 @@ class SwiftUIRestrictingInputTests: XCTestCase {
     func testWhitespaceTextField_RestrictsWhitespaces() throws {
         let newValue = "random text with whitespaces"
 
-        sut.viewModel.setRestrictionForWhitespaces(input: newValue)
+        sut.restrictWhitespaces(newValue)
 
-        XCTAssertEqual(sut.viewModel.whitespaceTextFieldText, "randomtextwithwhitespaces")
+        XCTAssertEqual(sut.whitespaceTextFieldText, "randomtextwithwhitespaces")
     }
 
     func testLettersTextField_RestrictsLetters() throws {
         let newValue = "random text 12345"
 
-        sut.viewModel.setRestrictionForLetters(input: newValue)
+        sut.restrictLetters(newValue)
 
-        XCTAssertEqual(sut.viewModel.lettersTextFieldText, "12345")
+        XCTAssertEqual(sut.lettersTextFieldText, "12345")
     }
 
     func testDecimalsTextField_RestrictDecimalNumbers() throws {
         let newValue = "random text 12345"
 
-        sut.viewModel.setRestrictionForDecimals(input: newValue)
+        sut.restrictDecimals(newValue)
 
-        XCTAssertEqual(sut.viewModel.decimalsTextFieldText, "random text")
+        XCTAssertEqual(sut.decimalsTextFieldText, "random text")
     }
 }

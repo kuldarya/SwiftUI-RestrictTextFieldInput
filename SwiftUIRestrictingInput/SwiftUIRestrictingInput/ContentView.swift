@@ -12,9 +12,9 @@ struct ContentView: View {
 
     var body: some View {
         VStack(spacing: 48) {
-            buildWhitespaceTextField()
-            buildLettersTextField()
-            buildDecimalsTextField()
+            whitespaceTextField
+            lettersTextField
+            decimalsTextField
             Spacer()
         }
         .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -22,36 +22,33 @@ struct ContentView: View {
         .padding(.top, 24)
     }
 
-    private func buildWhitespaceTextField() -> some View {
+    private var whitespaceTextField: some View {
         let bindingForWhitespaceTextField = Binding<String>(
             get: { viewModel.whitespaceTextFieldText },
-            set: { newValue in
-                viewModel.setRestrictionForWhitespaces(input: newValue)
-            })
+            set: viewModel.restrictWhitespaces
+        )
         return VStack(alignment: .leading, spacing: 8) {
             Text(Constants.noWhitespaces)
             TextField("", text: bindingForWhitespaceTextField)
         }
     }
 
-    private func buildLettersTextField() -> some View {
+    private var lettersTextField: some View {
         let bindingForLettersTextField = Binding<String>(
             get: { viewModel.lettersTextFieldText },
-            set: { newValue in
-                viewModel.setRestrictionForLetters(input: newValue)
-            })
+            set: viewModel.restrictLetters
+        )
         return VStack(alignment: .leading, spacing: 8) {
             Text(Constants.noLetters)
             TextField("", text: bindingForLettersTextField)
         }
     }
 
-    private func buildDecimalsTextField() -> some View {
+    private var decimalsTextField: some View {
         let bindingForDecimalsTextField = Binding<String>(
             get: { viewModel.decimalsTextFieldText },
-            set: { newValue in
-                viewModel.setRestrictionForDecimals(input: newValue)
-            })
+            set: viewModel.restrictDecimals
+            )
         return VStack(alignment: .leading, spacing: 8) {
             Text(Constants.noDecimalNumbers)
             TextField("", text: bindingForDecimalsTextField)
